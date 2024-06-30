@@ -2,6 +2,8 @@
 
 FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
 
+ARG TARGETARCH
+
 # set version label
 ARG BUILD_DATE
 ARG VERSION
@@ -29,7 +31,7 @@ RUN \
   NZBHYDRA2_VER=${NZBHYDRA2_RELEASE#v} && \
   curl -o \
     /tmp/nzbhydra2.zip -L \
-    "https://github.com/theotherp/nzbhydra2/releases/download/v${NZBHYDRA2_VER}/nzbhydra2-${NZBHYDRA2_VER}-amd64-linux.zip" && \
+    "https://github.com/theotherp/nzbhydra2/releases/download/v${NZBHYDRA2_VER}/nzbhydra2-${NZBHYDRA2_VER}-${TARGETARCH}-linux.zip" && \
   mkdir -p /app/nzbhydra2 && \
   unzip /tmp/nzbhydra2.zip -d /app/nzbhydra2 && \
   chmod +x /app/nzbhydra2/nzbhydra2wrapperPy3.py && \
