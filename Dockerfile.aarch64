@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-ubuntu:arm64v8-noble
+FROM ghcr.io/linuxserver/baseimage-ubuntu:noble
+
+ARG TARGETARCH
 
 # set version label
 ARG BUILD_DATE
@@ -28,7 +30,7 @@ RUN \
   NZBHYDRA2_VER=${NZBHYDRA2_RELEASE#v} && \
   curl -o \
     /tmp/nzbhydra2.zip -L \
-    "https://github.com/theotherp/nzbhydra2/releases/download/v${NZBHYDRA2_VER}/nzbhydra2-${NZBHYDRA2_VER}-arm64-linux.zip" && \
+    "https://github.com/theotherp/nzbhydra2/releases/download/v${NZBHYDRA2_VER}/nzbhydra2-${NZBHYDRA2_VER}-${TARGETARCH}-linux.zip" && \
   mkdir -p /app/nzbhydra2 && \
   unzip /tmp/nzbhydra2.zip -d /app/nzbhydra2 && \
   chmod +x /app/nzbhydra2/nzbhydra2wrapperPy3.py && \
